@@ -1,0 +1,91 @@
+html{
+    font-family:"Source Sans Pro", sans-serif;
+}
+.container{
+    max-width: 1200px;
+    margin:0 auto;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+}
+.logo{
+    width:40%;
+}
+.logo img{
+    width:5rem;
+}
+header a{
+    color:#20c997;
+    font-size:1.2rem;
+    text-decoration: none;
+    height:2rem;
+    padding:2rem;
+}
+h1{
+    font-size:1.5rem;
+    color:rgba(0,0,0,0.8);
+    text-align: center;
+    font-weight: 300;
+    margin-bottom:4rem;
+}
+.advant{
+    margin-top:5rem;
+    display: flex;
+    justify-content: space-around;
+    
+}
+.left,.right{
+    width:45%;
+    text-align: center;
+}
+.left img, .right img{
+    width:12rem;
+    
+}
+h3{
+    width:60%;
+    color:#20c997;
+    text-align: center;
+}
+p{
+    width:60%;
+    text-align: center;
+}
+.underscope{
+    width:40%;
+    height:.1rem;
+    background-color: rgba(0,0,0,0.5);
+    margin:.5rem auto;
+}
+.fix{
+    width:73%;
+    margin:5rem auto;
+}
+footer{
+    width:100%;
+    height:15rem;
+    background-color: #20c997;
+    padding-top:.5rem;
+}
+h5{
+    font-size:2rem;
+    color:white;
+    text-align: center;
+    font-weight: 300;
+}
+footer a{
+    width:8rem;
+    height:1.5rem;
+    display: block;
+    background-color: white;
+    padding:1rem;
+    color:black;
+    margin:0 auto;
+    border-radius:.1rem;
+    text-decoration: none;
+    transition: all .5s ease;
+}
+footer a:hover{
+    background-color: #c0c0c0;;
+}
