@@ -42,12 +42,14 @@ input{
     border:1px solid rgba(0,0,0,0.4);
     margin-bottom:2rem;
     padding:.5rem;
+    font-size:1.2rem;
 }
 h4{
     font-family:"Roboto",sans;
     font-weight: 300;
     color:rgba(0,0,0,0.9);
     font-size:1.5rem;
+    margin-bottom:0.5rem;
 }
 .set_img{
     width:18%;

@@ -58,9 +58,10 @@ main{
 }
 ._menu{
     width:7%;
-    border-right:1px solid rgba(0,0,0,0.4);
+    border-right:1px solid rgba(0,0,0,0.2);
+    border-bottom: 1px solid rgba(0,0,0,0.2);
     float:left;
-    height: 89vh;
+    height: 92vh;
     background-color: #f7f6f6;
     margin-right:0.5rem;
 }
@@ -109,4 +110,8 @@ main{
     width:38%;
     height:13rem;
     background-color:black;
+}
+.actions{
+    width:100%;
+    
 }
