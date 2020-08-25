@@ -1,0 +1,35 @@
+.cat_pie{
+    width:65%;
+    height:20rem;
+    background-color: black;
+    margin:2rem auto;
+}
+table{
+    width:80%;
+    margin:3rem auto;
+    border-spacing: 0;
+}
+th, td{
+    text-align: center;
+    border:1px solid rgba(0,0,0,0.4);
+}
+th{
+    background-color: #c0c0c0;
+    font-family: "Roboto", sans;
+    font-size:1.5rem;
+    font-weight: 300;
+    color:rgba(0,0,0,0.8);
+    height:5rem;
+}
+td{
+    font-family: "Roboto", sans;
+    font-size:1.5rem;
+    font-weight: 400;
+    color:rgba(0,0,0,0.8);
+    height:5rem;
+}
+h1{
+    font-family: "Roboto", sans;
+    font-weight: 100;
+    padding-left:2rem;
+}

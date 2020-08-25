@@ -1,35 +1,36 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
     <head>
         <title>Wypter</title>
-        <link rel="stylesheet" href="css/normilize.css">
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="{% static 'css/normilize.css'%}">
+        <link rel="stylesheet" href="{% static 'css/main.css'%}">
         <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap" rel="stylesheet">
     </head>
     <body>
         <div class="container">
             <div class="left">
                 <div class="logo">
-                    <img src="img/Wypter.png" alt="Logo Wypter">
+                    <img src="{% static 'img/Wypter.png'%}" alt="Logo Wypter">
                    
                 </div>
                 <h1>Start to save your</h1>
 
-                <form methd="POST">
+                <form method="POST">
                     <h2>Join us</h2>
-                    <input type="email" placeholder="Email">
-                    <input type="password" placeholder="Password">
-                    <button>Register</button>
+                    {{ user_form.as_p }}
+                    {% csrf_token %}   
+                    <input type="submit" class="button" value='Join'>
                 </form>
                 <div class="links">
-                    <a href="login.html" class="link">Have an account ?</a>
+                    <a href="{% url 'login' %}" class="link">Have an account ?</a>
                     <div class="fixer"></div>
                     <a href="about.html" class="link">About us</a>
                 </div>
             </div>
             <div class="right">
                 <h3>  money</h3>
-                <img src="img/money.svg" alt="Save money with us">
+                <img src="{% static 'img/money.svg'%}" alt="Save money with us">
             </div>
         </div>
     </body>
