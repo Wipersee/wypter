@@ -4,6 +4,9 @@ from .models import Profile
 
 
 class RegForm(forms.ModelForm):
+    """This form is for registration we use 2 passwords
+    and then check if it's equal to each other via 
+    clean_password2() function"""
     password = forms.CharField(label='Password',
                                widget=forms.PasswordInput)
     password2 = forms.CharField(label='Repeat password',
@@ -18,3 +21,19 @@ class RegForm(forms.ModelForm):
         if cd['password'] != cd['password2']:
             raise forms.ValidationError('Passwords don\'t match.')
         return cd['password2']
+
+
+class SetUserForm(forms.ModelForm):
+    """This is the form for editing profile,
+    specially User model"""
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'first_name', 'last_name')
+
+    
+class SetProfileForm(forms.ModelForm):
+    """This is the form for editing profile,
+    specially Profile model"""
+    class Meta:
+        model = Profile
+        fields = ('photo',)

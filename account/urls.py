@@ -5,4 +5,5 @@ from . import views
 urlpatterns=[
     path('', views.registration, name="registration"),
     path('',  include('django.contrib.auth.urls')),
+    path('settings/', views.settings, name='settings'),
 ]

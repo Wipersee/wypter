@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block title %}Settings{% endblock %}
+{% block style %}<link rel="stylesheet" href="{% static 'css/setting.css' %}">{% endblock %}
+    {% block userdata %}
+    <span class="userdata">{{ user.username }}</span>
+        <div class="avatar">
+            <img src="{{ user.profile.photo.url }}" alt="Your avatar">
+        </div>
+    {% endblock %}
+    {% block content %}
+    <main>
+        {% include 'menu.html' %}          
+        <div class="content">
+           <div class="change_avatar">
+               
+            </div>
+            <div class="form">
+                <form method="post" enctype="multipart/form-data">
+                    {{ set_user_form.as_p }}
+                    <h4>Change your photo:</h4>
+                    <img src="{{ user.profile.photo.url }}" alt="Your avatar">
+                    {{ set_prof_form.as_p }}
+                    {% csrf_token %}
+                    <input type="submit" class="sub_btn" value="Save">
+                    
+                </form>
+                <a href="{% url 'password_change' %}" class="change_btn"">Change password</a>
+            </div>
+            <div class="set_img">
+                <img src="{% static 'img/resume.svg' %}" alt="Settings">
+            </div>
+        </div>
+    </main>
+    {% endblock %}

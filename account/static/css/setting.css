@@ -1,3 +1,4 @@
+
 .content{
     display:flex;
     justify-content: space-between;
@@ -43,8 +44,12 @@ input{
     margin-bottom:2rem;
     padding:.5rem;
     font-size:1.2rem;
+    font-family:"Roboto", sans;
 }
-h4{
+.helptext{
+    display:none;
+}
+label, h4{
     font-family:"Roboto",sans;
     font-weight: 300;
     color:rgba(0,0,0,0.9);
@@ -70,12 +75,29 @@ h4{
     cursor: pointer;
     border:1px solid black;
 }
+
+.change_btn:hover{
+    text-decoration: underline;
+}
+label[for=id_photo],label[for=photo-clear_id], form:last-child a, #photo-clear_id{
+    display:none;
+}
+form img{
+    width:40%;
+    margin:1rem auto;
+    display:block;
+}
+.exit{
+    font-family:"Roboto", sans;
+    font-size:1.2rem;
+    color:white;
+    text-decoration: none;
+    margin-top:1.3rem;
+}
 .change_btn{
     color:#444444;
     font-family:"Roboto", sans;
     text-decoration: none;
     font-size:1.2rem;
-}
-.change_btn:hover{
-    text-decoration: underline;
+    display:block;
 }

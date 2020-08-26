@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import RegForm
+from .forms import RegForm, SetUserForm, SetProfileForm
 from .models import Profile
 from django.shortcuts import redirect
 
@@ -20,3 +20,25 @@ def registration(request):
         return render(request,
                     'registration/main.html',
                     {'user_form':user_form})
+
+
+def settings(request):
+    if request.method == 'POST':
+        set_user_form = SetUserForm(instance=request.user,
+                                data=request.POST)
+        set_prof_form = SetProfileForm(
+                                instance=request.user.profile,
+                                data=request.POST,
+                                files=request.FILES)
+        if set_user_form.is_valid() and set_prof_form.is_valid():
+            set_user_form.save()
+            set_prof_form.save()
+            return redirect('settings')
+    else:
+        set_user_form = SetUserForm(instance=request.user)
+        set_prof_form = SetProfileForm(instance=request.user.profile)
+        return render(request,
+                'account/settings.html',
+                {'set_user_form': set_user_form,
+                'set_prof_form': set_prof_form})
+
