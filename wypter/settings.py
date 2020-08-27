@@ -135,3 +135,6 @@ LOGOUT_URL = 'logout'
 #Settings for media files (images)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+#JUST IN DEBUG MODE TO TYPE LISTS TO CONSOLE
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

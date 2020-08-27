@@ -86,3 +86,42 @@ label{
     border: 1px solid #f5c6cb;
     border-radius: .25rem;
 }
+.reset_p{
+    font-family:"Roboto", sans;
+    font-size:1.1rem;
+    text-align: center;
+    color:white;
+    font-weight:300;
+}
+._btn{
+    width:40%;
+    margin:1rem auto;
+}
+.for_pass{
+    color: white;
+    font-family: "Roboto", sans-serif;
+    font-size: 1.0rem;
+    text-align: center;
+    /* width: 100%; */
+    /* margin: 0 auto; */
+    margin-top:-1rem;
+    display: block;
+    text-decoration: underline;
+}
+.reset_h1{
+    width:100%;
+}
+li{
+    font-family:"Roboto", sans;
+    font-size:0.8rem;
+    color:white;
+    font-weight: 300;
+}
+ul{
+    margin:1rem 0;
+}
+.fix_a{
+    font-family: "Roboto", sans;
+    color:white;
+    text-decoration: underline;
+}
