@@ -31,10 +31,11 @@
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'dashboard' %}">
+        <div class="sidebar-brand-text mx-3">Wypter</div>
         <div class="sidebar-brand-icon">
             <img src="{% static 'img/Wypter.png' %}" alt="Logo" class="img_logo">
           </div>
-          <div class="sidebar-brand-text mx-3">Wypter</div>
+          
       </a>
 
       <!-- Divider -->
@@ -116,7 +117,7 @@
               <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ user.username }}</span>
-                  <img class="img-profile rounded-circle" src="{{ user.profile.photo.url }}">
+                  <img class="img-profile rounded-circle" src="{% if user.profile.photo %}{{ user.profile.photo.url }}{% else%}{% static 'img/Wypter.png' %}{% endif %}">
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

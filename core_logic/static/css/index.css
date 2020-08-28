@@ -10803,19 +10803,19 @@
   }
   
   .bg-login-image {
-    background: url("https://source.unsplash.com/K4mSJ7kc0As/600x800");
+    background: url("https://images.unsplash.com/photo-1567427018369-9216e43df052?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80");
     background-position: center;
     background-size: cover;
   }
   
   .bg-register-image {
-    background: url("https://source.unsplash.com/Mv9hjnEUHR4/600x800");
+    background: url("https://images.unsplash.com/photo-1574607408168-ba3d03011c23?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80");
     background-position: center;
     background-size: cover;
   }
   
   .bg-password-image {
-    background: url("https://source.unsplash.com/oWTW-jNGl9I/600x800");
+    background: url("https://images.unsplash.com/photo-1572882881113-ff0354bc17d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80");
     background-position: center;
     background-size: cover;
   }
