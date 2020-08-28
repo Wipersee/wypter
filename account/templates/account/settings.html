@@ -1,20 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {%block title %}Settings{% endblock %}
-{% block style %}<link rel="stylesheet" href="{% static 'css/setting.css' %}">{% endblock %}
-    {% block userdata %}
-    <span class="userdata">{{ user.username }}</span>
-        <div class="avatar">
-            <img src="{% if user.profile.photo %}{{ user.profile.photo.url }}{% endif %}" alt="Your avatar">
-        </div>
-    {% endblock %}
-    {% block content %}
-    <main>
-        {% include 'menu.html' %}          
-        <div class="content">
-           <div class="change_avatar">
-               
-            </div>
+    {% block content %}    
+    <div class="container-fluid">
+        <div class="row">
             <div class="form">
                 <form method="post" enctype="multipart/form-data">
                     {{ set_user_form.as_p }}
@@ -31,5 +20,6 @@
                 <img src="{% static 'img/resume.svg' %}" alt="Settings">
             </div>
         </div>
-    </main>
+    </div>
+</div>
     {% endblock %}

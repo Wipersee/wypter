@@ -4,4 +4,4 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 @login_required
 def dashboard(request):
-    return render(request,'main_stat.html')
+    return render(request,'core_logic/main_stat.html')
