@@ -42,7 +42,7 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
+      <li class="nav-item{%if active == 'dashboard' %} active{%endif%}">
         <a class="nav-link" href="{% url 'dashboard' %}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
@@ -55,15 +55,14 @@
       <div class="sidebar-heading">
         Detail View
       </div>
-
-      <li class="nav-item">
-        <a class="nav-link" href="index.html">
+      <li class="nav-item {%if active == 'pie'%} active{%endif%}">
+        <a class="nav-link" href="{% url 'pie_chart' %}">
           <i class="fas fa-chart-pie"></i>
           <span>Pie Chart</span></a>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="index.html">
+      <li class="nav-item {%if active == 'graph'%} active{%endif%}">
+        <a class="nav-link" href="{% url 'graph_chart' %}">
           <i class="fas fa-chart-line"></i>
           <span>Linear Chart</span></a>
       </li>
@@ -77,13 +76,13 @@
       </div>
 
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" data-toggle="modal" data-target="#extendAddModal">
           <i class="fas fa-minus-circle"></i>
           <span>Add extension</span></a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" data-toggle="modal" data-target="#incomeAddModal">
           <i class="fas fa-plus-circle"></i>
           <span>Add income</span></a>
       </li>
@@ -181,6 +180,49 @@
       </div>
     </div>
   </div>
+
+<!--  Extend Add Modal  -->
+<div class="modal fade" id="extendAddModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Extend add</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Income Add Modal  -->
+<div class="modal fade" id="incomeAddModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Income add</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
   <!-- Bootstrap core JavaScript-->
   <script src="{% static 'js/jquery.min.js' %}"></script>

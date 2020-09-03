@@ -11230,3 +11230,6 @@
   .red_text{
     color:#e74a3b;
   }
+a:hover{
+  cursor:pointer;
+}
