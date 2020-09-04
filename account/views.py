@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .forms import RegForm, SetUserForm, SetProfileForm
 from .models import Profile
+from core_logic.models import Wallet
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -14,9 +15,9 @@ def registration(request):
             new_user = user_form.save(commit=False)
             new_user.set_password(
                 user_form.cleaned_data['password'])
-            print(user_form.cleaned_data['password'])
             new_user.save()
             Profile.objects.create(user=new_user)
+            Wallet.objects.create(user=Profile.objects.get(user=new_user))
             return redirect('login/')
         else:
             return render(request,
