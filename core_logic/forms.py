@@ -3,6 +3,7 @@ from . import models
 
 
 class AddExtendForm(forms.ModelForm):
+	
 	class Meta:
 		model = models.Extend
 		fields=('category', 'price', 'comment')

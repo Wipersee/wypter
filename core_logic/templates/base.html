@@ -138,6 +138,12 @@
           <!-- End of Topbar -->
 
           <!-- Begin Page Content -->
+          <div class="alert alert-danger alert-dismissible fade show {% if error == True%}error_active{%else%}error_unactive{%endif%}" role="alert">
+              You don't have enough money. Please rewrite extend.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
             {% block content %} {% endblock %}
         <!-- End of Main Content -->    
 
@@ -192,11 +198,14 @@
         </button>
       </div>
       <div class="modal-body">
-       Hello world
+       <form method="POST">
+       {{ extend_form.as_p }}
+       {% csrf_token %}
+       <button type="submit" name="btn_extend">Add</button>
+     </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger">Add</button>
       </div>
     </div>
   </div>
@@ -213,11 +222,14 @@
         </button>
       </div>
       <div class="modal-body">
-        ...
+        <form method="POST">
+          {{ income_form.as_p }}
+          {% csrf_token %}
+       <button type="submit" name="btn_income">Add</button>
+     </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn  btn-success">Add</button>
       </div>
     </div>
   </div>
@@ -240,7 +252,9 @@
   <!-- Page level custom scripts -->
   <script src="{% static 'js/chart-area-demo.js' %}"></script>
   <script src="{% static 'js/chart-pie-demo.js' %}"></script>
-
+<script type="text/javascript">
+  $('.alert').alert()
+</script>
 </body>
 
 </html>

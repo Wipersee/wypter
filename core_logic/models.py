@@ -30,17 +30,17 @@ class Category(models.Model):
 
 class Extend(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    price = models.PositiveIntegerField()
+    price = models.DecimalField(max_digits=20, decimal_places=2, default=0.00)
     comment = models.CharField(max_length=256)
     wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.price
+        return f"{self.wallet.user.user.username} {self.category} {self.price}"
 
 
 class Income(models.Model):
-    price = models.PositiveIntegerField()
+    price = models.DecimalField(max_digits=20, decimal_places=2, default=0.00)
     wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.price
+        return f"{self.wallet.user.user.username} {self.price}"
