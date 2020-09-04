@@ -45,6 +45,12 @@
   .btn{
       height:3rem;
   }
+  .errorlist li{
+    color:rgb(223, 30, 30);
+  }
+  .errorlist{
+    list-style:none;
+  }
 </style>
 </head>
 
@@ -62,6 +68,7 @@
               <div class="text-center">
                 <h1 class="h1 text-gray-900 mb-4">Wypter</h1>
                 <h2 class="h4 text-gray-900 mb-4">Join us</h2>
+               
               </div>
               <form class="user" method="post">
                 {{ user_form.as_p }}

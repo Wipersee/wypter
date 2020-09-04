@@ -3,6 +3,8 @@ from .forms import RegForm, SetUserForm, SetProfileForm
 from .models import Profile
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.contrib.auth.models import User
 
 # Create your views here.
 def registration(request):
@@ -16,13 +18,18 @@ def registration(request):
             new_user.save()
             Profile.objects.create(user=new_user)
             return redirect('login/')
+        else:
+            return render(request,
+                    'registration/main.html',
+                    {'user_form':user_form,})
     else:
         if request.user.is_authenticated:
             return redirect('dashboard')
         user_form = RegForm()
         return render(request,
                     'registration/main.html',
-                    {'user_form':user_form})
+                    {'user_form':user_form,
+                    'error': False})
 
 @login_required
 def settings(request):
