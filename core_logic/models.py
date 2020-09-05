@@ -15,7 +15,9 @@ class Wallet(models.Model):
         choices=choices,
         default='UAH'
     )
-    balance = models.DecimalField(max_digits=20, decimal_places=2, default=0.00)
+    balance = models.DecimalField(max_digits=20,
+                                  decimal_places=2,
+                                  default=0.00)
 
     def __str__(self):
         return f'This is the wallet of {self.user.user}'

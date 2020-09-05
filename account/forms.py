@@ -14,7 +14,7 @@ class RegForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username','email')
+        fields = ('username', 'email')
 
     def clean_password2(self):
         cd = self.cleaned_data
@@ -30,7 +30,7 @@ class SetUserForm(forms.ModelForm):
         model = User
         fields = ('username', 'email', 'first_name', 'last_name')
 
-    
+
 class SetProfileForm(forms.ModelForm):
     """This is the form for editing profile,
     specially Profile model"""
