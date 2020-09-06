@@ -21,7 +21,7 @@
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-uppercase mb-1 red_text">Total spent</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">
-                      {{sum_extends}} {% if wallet.courency == "UAH" %}UAH{% elif wallet.courency == "USD"%}USD{%elif wallet.courency == "RUB"%}RUB{% else %}EUR{%endif%}
+                      {{sum_extends}} {{wallet.courency}}
                     </div>
                     </div>
                     <div class="col-auto">

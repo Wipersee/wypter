@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import AddExtendForm, AddIncomeForm
-from .models import Wallet, Extend, Income
+from .models import Wallet, Extend, Income, Category
 from account.models import Profile
 from decimal import Decimal
 
@@ -52,7 +52,6 @@ def dashboard(request):
             user=Profile.objects.get(user=request.user))
         sum_extends = [
             x.price for x in Extend.objects.filter(wallet=user_wallet)]
-
         return render(request, 'core_logic/main_stat.html',
                       {'active': 'dashboard',
                                  'extend_form': extend_form,
