@@ -13,5 +13,6 @@ class DatePriceList(generics.ListAPIView):
 
 class DatePriceListDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Extend.objects.all()
-    serializer_class = Extend
+    serializer_class = DateSerializer
+
 
