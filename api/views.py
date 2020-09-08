@@ -11,8 +11,9 @@ class DatePriceList(generics.ListAPIView):
     serializer_class = DateSerializer
 
 
-class DatePriceListDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Extend.objects.all()
+class DatePriceListDetail(generics.ListAPIView):
     serializer_class = DateSerializer
 
-
+    def get_queryset(self):
+        identifier = self.kwargs['pk']
+        return Extend.objects.filter(wallet__user__user__pk=identifier)
