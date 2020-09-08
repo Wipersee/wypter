@@ -35,6 +35,7 @@ class Extend(models.Model):
     price = models.DecimalField(max_digits=20, decimal_places=2, default=0.00)
     comment = models.CharField(max_length=256)
     wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE)
+    date = models.DateField(auto_now=True)
 
     def __str__(self):
         return f"{self.wallet.user.user.username} {self.category} {self.price}"
