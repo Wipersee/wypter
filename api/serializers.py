@@ -7,6 +7,3 @@ class DateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Extend
         fields = ('date', 'price', 'wallet')
-
-
-

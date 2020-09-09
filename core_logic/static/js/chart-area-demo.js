@@ -26,15 +26,29 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   }
   return s.join(dec);
 }
-
+window.onload = function(){
+  fetch('http://127.0.0.1:8000/api/graph_chart/')
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    console.log(data);
+    datas = [];
+    labels=[];
+    for(var i =0; i<data.length;i++){
+      datas.push(parseFloat(data[i].price));
+      labels.push(data[i].date);
+    }
+    console.log(labels);
+    console.log(data);
 // Area Chart Example
 var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    labels: labels,
     datasets: [{
-      label: "Earnings",
+      label: "Extend",
       lineTension: 0.3,
       backgroundColor: "rgba(78, 115, 223, 0.05)",
       borderColor: "rgba(78, 115, 223, 1)",
@@ -46,7 +60,7 @@ var myLineChart = new Chart(ctx, {
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
       pointBorderWidth: 2,
-      data: [0,0,0,500,150,12,212,323,42414,42121,1212,231,132],
+      data: datas,
     }],
   },
   options: {
@@ -116,3 +130,5 @@ var myLineChart = new Chart(ctx, {
     }
   }
 });
+  });
+}
