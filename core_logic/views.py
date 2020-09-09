@@ -116,6 +116,6 @@ def graph_chart(request):
             'date').annotate(price=Sum('price'))[::-1])
     return render(request, 'core_logic/graph.html', {'active': 'graph',
                                                      'extends': extends,
-                                                     'wallet': user_wallet, 
+                                                     'wallet': user_wallet,
                                                      'extend_form': extend_form,
-                                                     'income_form': income_form,})
+                                                     'income_form': income_form, })

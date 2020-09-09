@@ -188,7 +188,7 @@
   </div>
 
 <!--  Extend Add Modal  -->
-<div class="modal fade" id="extendAddModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="extendAddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">"staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -201,18 +201,18 @@
        <form method="POST">
        {{ extend_form.as_p }}
        {% csrf_token %}
-       <button type="submit" name="btn_extend">Add</button>
-     </form>
+        <div class="modal-footer">
+          <button type="submit" name="btn_extend" class="btn btn-danger">Add</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+     </form>
       </div>
     </div>
   </div>
 </div>
 
 <!-- Income Add Modal  -->
-<div class="modal fade" id="incomeAddModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="incomeAddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -225,12 +225,13 @@
         <form method="POST">
           {{ income_form.as_p }}
           {% csrf_token %}
-       <button type="submit" name="btn_income">Add</button>
-     </form>
-      </div>
-      <div class="modal-footer">
+        <div class="modal-footer">
+         <button type="submit" name="btn_income" class="btn btn-success">Add</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
+     </form>
+      </div>
+
     </div>
   </div>
 </div>

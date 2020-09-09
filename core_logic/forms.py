@@ -3,10 +3,9 @@ from . import models
 
 
 class AddExtendForm(forms.ModelForm):
-
     class Meta:
         model = models.Extend
-        fields = ('category', 'price', 'comment')
+        fields = ('price', 'comment', 'category')
 
 
 class AddIncomeForm(forms.ModelForm):
