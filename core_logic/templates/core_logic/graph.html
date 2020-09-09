@@ -16,10 +16,12 @@
         </div>
       </div>
   </div>
+  <div class="container">
   <h4>Table of extensions by days</h4>
+</div>
   <div class="container-lg">
     <table class="table table-hover">
-        <thead>
+        <thead class="thead-light">
           <tr>
             <th scope="col">№</th>
             <th scope="col">Date</th>
@@ -27,22 +29,17 @@
           </tr>
         </thead>
         <tbody>
+          {% for extend in extends %}
           <tr>
-            <th scope="row">1</th>
-            <td>20.04.2020</td>
-            <td>20.31</td>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{extend.date}}</td>
+            <td>{{extend.price}} {{wallet.courency}}</td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>18.03.2020</td>
-            <td>1.5</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>15.10.2019</td>
-            <td>15.00</td>
-          </tr>
+          {% endfor %}
         </tbody>
       </table>
   </div>
+      <script type="text/javascript">
+        var user_pk = {{request.user.pk}};
+      </script>
 {%endblock%}

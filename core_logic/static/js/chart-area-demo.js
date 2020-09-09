@@ -26,22 +26,21 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   }
   return s.join(dec);
 }
+
+
 window.onload = function(){
-  fetch('http://127.0.0.1:8000/api/graph_chart/')
+  fetch('http://127.0.0.1:8000/api/graph_chart/'+user_pk+'/')
   .then((response) => {
     return response.json();
   })
   .then((data) => {
-    console.log(data);
     datas = [];
     labels=[];
     for(var i =0; i<data.length;i++){
       datas.push(parseFloat(data[i].price));
       labels.push(data[i].date);
     }
-    console.log(labels);
-    console.log(data);
-// Area Chart Example
+
 var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
@@ -52,7 +51,7 @@ var myLineChart = new Chart(ctx, {
       lineTension: 0.3,
       backgroundColor: "rgba(78, 115, 223, 0.05)",
       borderColor: "rgba(78, 115, 223, 1)",
-      pointRadius: 3,
+      pointRadius: 2,
       pointBackgroundColor: "rgba(78, 115, 223, 1)",
       pointBorderColor: "rgba(78, 115, 223, 1)",
       pointHoverRadius: 3,
@@ -98,7 +97,7 @@ var myLineChart = new Chart(ctx, {
         gridLines: {
           color: "rgb(234, 236, 244)",
           zeroLineColor: "rgb(234, 236, 244)",
-          drawBorder: false,
+          drawBorder: true,
           borderDash: [2],
           zeroLineBorderDash: [2]
         }
