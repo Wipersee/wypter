@@ -60,6 +60,7 @@
                         <img src="{% if user.profile.photo %}{{ user.profile.photo.url }}{% else%}{% static 'img/Wypter.png' %}{% endif %}" alt="Your avatar">
                     </div>
                     {{ set_prof_form.as_p }}
+
                     {% csrf_token %}
                     <input type="submit" class="btn btn-dark" value="Save">
                     <a href="{% url 'password_change' %}" class="btn btn-link change_btn">Change password</a>

@@ -5,10 +5,10 @@ from account.models import Profile
 class Wallet(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     choices = (
-        ('UAH', 'ukraine hryvna'),
+        ('UAH', 'Ukraine hryvna'),
         ('USD', 'Dollars'),
-        ('RUB', 'russian rubles'),
-        ('EUR', 'euros')
+        ('RUB', 'Russian rubles'),
+        ('EUR', 'Euros')
     )
     courency = models.CharField(
         max_length=3,

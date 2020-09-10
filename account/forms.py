@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import Profile
-
+from core_logic.models import Wallet
 
 class RegForm(forms.ModelForm):
     """This form is for registration we use 2 passwords
@@ -37,3 +37,9 @@ class SetProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('photo',)
+
+
+class SetWalletForm(forms.ModelForm):
+    class Meta:
+        model = Wallet
+        fields = ('courency',)

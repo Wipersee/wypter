@@ -126,6 +126,7 @@
       </div>
       <script type="text/javascript">
         var user_pk = {{request.user.pk}};
+        var courency = {%  if wallet.courency == 'UAH' %}'₴'{% elif wallet.courency == 'USD' %}'$'{% elif wallet.courency == 'EUR' %}'€'{% else%}'₽'{%endif%};
       </script>
       <!-- End of Main Content -->
       {% endblock %}

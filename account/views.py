@@ -1,14 +1,18 @@
 from django.shortcuts import render, redirect
-from .forms import RegForm, SetUserForm, SetProfileForm
+from .forms import RegForm, SetUserForm, SetProfileForm, SetWalletForm
 from .models import Profile
 from core_logic.models import Wallet
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 def registration(request):
     if request.method == 'POST':
         user_form = RegForm(request.POST)
         if user_form.is_valid():
+            # if User.objects.get(email=user_form.cleaned_data['email']):
+                # user_form.errors.append("This email is used")
+                # return 
             new_user = user_form.save(commit=False)
             new_user.set_password(
                 user_form.cleaned_data['password'])
@@ -49,4 +53,4 @@ def settings(request):
         return render(request,
                       'account/settings.html',
                       {'set_user_form': set_user_form,
-                       'set_prof_form': set_prof_form})
+                       'set_prof_form': set_prof_form,})
