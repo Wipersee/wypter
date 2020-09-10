@@ -13,3 +13,15 @@ class DateDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Extend
         fields = ('date', 'price')
+
+
+class ExtendSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Extend
+        fields = ('price', 'wallet')
+
+class CategorySerializer(serializers.ModelSerializer):
+    category_name = ExtendSerializer(many=True,  read_only=True)
+    class Meta:
+        model = Category
+        fields = ('name', 'category_name')
