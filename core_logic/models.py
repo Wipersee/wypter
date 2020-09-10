@@ -31,7 +31,7 @@ class Category(models.Model):
 
 
 class Extend(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, related_name='category_name', on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=20, decimal_places=2, default=0.00)
     comment = models.CharField(max_length=256)
     wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE)
