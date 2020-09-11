@@ -26,16 +26,24 @@ class Wallet(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=256)
 
+    class Meta:
+        verbose_name_plural = 'Categories'
+        
     def __str__(self):
         return self.name
 
 
 class Extend(models.Model):
-    category = models.ForeignKey(Category, related_name='category_name', on_delete=models.CASCADE)
+    category = models.ForeignKey(
+        Category, related_name='extends', on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=20, decimal_places=2, default=0.00)
     comment = models.CharField(max_length=256)
     wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE)
     date = models.DateField(auto_now=True)
+
+    class Meta:
+        ordering = ['-date']
+        
 
     def __str__(self):
         return f"{self.wallet.user.user.username} {self.category} {self.price}"

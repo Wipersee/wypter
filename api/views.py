@@ -1,6 +1,7 @@
 from rest_framework import generics
-from core_logic.models import Extend, Category
-from .serializers import  DateDetailSerializer, DateSerializer, CategorySerializer
+from core_logic.models import Extend, Category, Wallet
+from account.models import Profile
+from .serializers import  DateDetailSerializer, DateSerializer, CategorySerializer, ExtendSerializer
 from django.db.models import Sum
 
 
@@ -19,11 +20,12 @@ class DatePriceListDetail(generics.ListAPIView):
 
 
 class CategoryPriceDetail(generics.ListAPIView):
-    serializer_class = CategorySerializer
+    serializer_class = ExtendSerializer
 
     def get_queryset(self):
         identifier = self.kwargs['pk']
-        return Category.objects.filter(pk=identifier)
+        wallet = Wallet.objects.get(user=Profile.objects.get(user=identifier))
+        return Extend.objects.filter(wallet=wallet)
 
 class CategoryPriceList(generics.ListAPIView):
     queryset = Category.objects.all()
