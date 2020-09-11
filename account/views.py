@@ -3,16 +3,12 @@ from .forms import RegForm, SetUserForm, SetProfileForm, SetWalletForm
 from .models import Profile
 from core_logic.models import Wallet
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
+
 
 def registration(request):
     if request.method == 'POST':
         user_form = RegForm(request.POST)
         if user_form.is_valid():
-            # if User.objects.get(email=user_form.cleaned_data['email']):
-                # user_form.errors.append("This email is used")
-                # return 
             new_user = user_form.save(commit=False)
             new_user.set_password(
                 user_form.cleaned_data['password'])
@@ -43,14 +39,20 @@ def settings(request):
             instance=request.user.profile,
             data=request.POST,
             files=request.FILES)
-        if set_user_form.is_valid() and set_prof_form.is_valid():
+        set_wallet_form = SetWalletForm(instance=request.user.profile, data=request.POST)
+        if set_user_form.is_valid() and set_prof_form.is_valid() and set_wallet_form.is_valid():
             set_user_form.save()
             set_prof_form.save()
+            wallet = Wallet.objects.get(user=request.user.profile)
+            wallet.courency = set_wallet_form.cleaned_data['courency']
+            wallet.save(update_fields=['courency'])
             return redirect('settings')
     else:
         set_user_form = SetUserForm(instance=request.user)
         set_prof_form = SetProfileForm(instance=request.user.profile)
+        set_wallet_form = SetWalletForm(instance=request.user.profile)
         return render(request,
                       'account/settings.html',
                       {'set_user_form': set_user_form,
-                       'set_prof_form': set_prof_form,})
+                       'set_prof_form': set_prof_form,
+                       'set_wallet_form': set_wallet_form})

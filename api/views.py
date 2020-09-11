@@ -26,7 +26,7 @@ class CategoryPriceDetail(generics.ListAPIView):
         identifier = self.kwargs['pk']
         wallet = Wallet.objects.get(user=Profile.objects.get(user=identifier))
         return Extend.objects.filter(wallet=wallet)
-
+ 
 class CategoryPriceList(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer

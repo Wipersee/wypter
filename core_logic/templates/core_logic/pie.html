@@ -13,21 +13,12 @@
         <div class="chart-pie">
           <canvas id="myPieChart"></canvas>
         </div>
-        <div class="mt-4 text-center small">
-          <span class="mr-2">
-            <i class="fas fa-circle text-primary"></i> Direct
-          </span>
-          <span class="mr-2">
-            <i class="fas fa-circle text-success"></i> Social
-          </span>
-          <span class="mr-2">
-            <i class="fas fa-circle text-info"></i> Referral
-          </span>
-        </div>
       </div>
     </div>
   </div>
-  <h4>Table of extensions by categories</h4>
+  <div class="container">
+    <h4>Table of extensions by categories</h4>
+  </div>
   <div class="container-lg">
     <table class="table table-hover">
         <thead>
@@ -39,25 +30,22 @@
           </tr>
         </thead>
         <tbody>
+          {% for extend in extends %}
           <tr>
-            <th scope="row">1</th>
-            <td>Gaming</td>
-            <td>20.31</td>
-            <td>WoW</td>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{extend.category}}</td>
+            <td>{{extend.price}} {{wallet.courency}}</td>
+            <td>{{extend.comment}}</td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Food</td>
-            <td>1.5</td>
-            <td>MacDonald's</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Education</td>
-            <td>15.00</td>
-            <td>Books for university</td>
-          </tr>
+          {% endfor %}
         </tbody>
       </table>
   </div>
+{%endblock%}
+{%block script%}
+<script type="text/javascript">
+        var user_pk = {{request.user.pk}};
+        var courency = {%  if wallet.courency == 'UAH' %}'₴'{% elif wallet.courency == 'USD' %}'$'{% elif wallet.courency == 'EUR' %}'€'{% else%}'₽'{%endif%};
+      </script>
+<script src="{% static 'js/chart-pie.js' %}"></script>
 {%endblock%}

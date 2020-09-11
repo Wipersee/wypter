@@ -1,6 +1,60 @@
-// Set new default font family and font color to mimic Bootstrap's default styling
-Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-Chart.defaults.global.defaultFontColor = '#858796';
+function pie_chart(){
+	fetch('http://127.0.0.1:8000/api/pie_chart/'+user_pk+'/')
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    chart_datas = [];
+    chart_labels=[];
+    dict = {};
+   for(var i = 0; i < data.length; i++){
+    buf = data[i]['category']['name'];
+      if (dict[buf]){
+        dict[buf] = dict[buf] + parseFloat(data[i]['price']);
+      }
+      else{
+        dict[buf] = parseFloat(data[i]['price']);
+      }
+   }
+   k = Object.keys(dict);
+   v = Object.values(dict);
+   for(var i = 0; i < k.length; i++){
+    chart_datas.push(v[i]);
+    chart_labels.push(k[i]);
+   }
+
+// Pie Chart Example
+var ctx = document.getElementById("myPieChart");
+var myPieChart = new Chart(ctx, {
+  type: 'pie',
+  data: {
+    labels: chart_labels,
+    datasets: [{
+      data: chart_datas,
+      backgroundColor: ['#fcba03', '#fc3903', '#00ff62', '#00aeff', '#fc6f03', '#7f00b5','#7bfc03'],
+      
+      hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 2,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: true,
+      caretPadding: 10,
+    },
+    legend: {
+      display: false
+    },
+    cutoutPercentage: 65,
+  },
+});
+})}
 
 function number_format(number, decimals, dec_point, thousands_sep) {
   // *     example: number_format(1234.56, 2, ',', ' ');
@@ -27,25 +81,24 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
-
-window.onload = function(){
-  fetch('http://127.0.0.1:8000/api/graph_chart/'+user_pk+'/')
+function graph_chart(){
+	  fetch('http://127.0.0.1:8000/api/graph_chart/'+user_pk+'/')
   .then((response) => {
     return response.json();
   })
   .then((data) => {
-    datas = [];
-    labels=[];
+    graph_datas = [];
+    graph_labels=[];
     for(var i =0; i<data.length;i++){
-      datas.push(parseFloat(data[i].price));
-      labels.push(data[i].date);
+      graph_datas.push(parseFloat(data[i].price));
+      graph_labels.push(data[i].date);
     }
 
 var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: labels,
+    labels: graph_labels,
     datasets: [{
       label: "Extend",
       lineTension: 0.3,
@@ -59,7 +112,7 @@ var myLineChart = new Chart(ctx, {
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
       pointBorderWidth: 2,
-      data: datas,
+      data: graph_datas,
     }],
   },
   options: {
@@ -129,5 +182,9 @@ var myLineChart = new Chart(ctx, {
     }
   }
 });
-  });
+  });}
+
+window.onload = function(){
+	graph_chart();
+	pie_chart();
 }
