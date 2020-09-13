@@ -43,7 +43,7 @@ def settings(request):
         if set_user_form.is_valid() and set_prof_form.is_valid() and set_wallet_form.is_valid():
             set_user_form.save()
             set_prof_form.save()
-            wallet = Wallet.objects.get(user=request.user.profile)
+            wallet = Wallet.objects.get(user=request.user.profile) #This thing is used to rewrite courancy
             wallet.courency = set_wallet_form.cleaned_data['courency']
             wallet.save(update_fields=['courency'])
             return redirect('settings')

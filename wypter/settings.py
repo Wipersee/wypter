@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'core_logic.apps.CoreLogicConfig',
 ]
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
@@ -109,9 +110,12 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# Methods of authentification
+
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'account.authentication.EmailAuthBackend',]
+    'account.authentication.EmailAuthBackend', ]
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -133,15 +137,15 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-#Rediractions after different actions of user
+# Rediractions after different actions of user
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGOUT_REDIRECT_URL = 'registration'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 
-#Settings for media files (images)
+# Settings for media files (images)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-#JUST IN DEBUG MODE TO TYPE LISTS TO CONSOLE
+# JUST IN DEBUG MODE TO TYPE ENVELOPS TO CONSOLE
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

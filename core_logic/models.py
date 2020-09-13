@@ -3,6 +3,9 @@ from account.models import Profile
 
 
 class Wallet(models.Model):
+    """
+    This is the model class of Wallet of the Profile
+    """
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     choices = (
         ('UAH', 'Ukraine hryvna'),
@@ -24,16 +27,23 @@ class Wallet(models.Model):
 
 
 class Category(models.Model):
+    """
+    This class is used to save categories
+    and add new ones via admin
+    """
     name = models.CharField(max_length=256)
 
     class Meta:
         verbose_name_plural = 'Categories'
-        
+
     def __str__(self):
         return self.name
 
 
 class Extend(models.Model):
+    """
+    This class is used to store extends of every user
+    """
     category = models.ForeignKey(
         Category, related_name='extends', on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=20, decimal_places=2, default=0.00)
@@ -43,13 +53,15 @@ class Extend(models.Model):
 
     class Meta:
         ordering = ['-date']
-        
 
     def __str__(self):
         return f"{self.wallet.user.user.username} {self.category} {self.price}"
 
 
 class Income(models.Model):
+    """
+    This class is used to store incomes of every user
+    """
     price = models.DecimalField(max_digits=20, decimal_places=2, default=0.00)
     wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE)
 
