@@ -186,6 +186,3 @@ def detail_sum(request):
     extends = Extend.objects.filter(wallet=wallet).order_by('-date')
     return render(request, 'core_logic/detail.html', {'extends': extends,
                                                       'wallet': wallet})
-
-def delete_extension(request):
-    pass

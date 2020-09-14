@@ -1,6 +1,6 @@
 from django.db import models
 from account.models import Profile
-
+from django.utils.text import slugify
 
 class Wallet(models.Model):
     """
