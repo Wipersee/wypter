@@ -6,6 +6,7 @@ from account.models import Profile
 from decimal import Decimal
 from django.db.models import Sum
 from datetime import datetime, timedelta
+from django.urls import reverse
 
 
 @login_required
@@ -152,7 +153,7 @@ def graph_chart(request):
                                                comment=extend_form.cleaned_data['comment'],
                                                wallet=user_wallet)
                     ex.save()
-                    return redirect('grah_chart')
+                    return redirect('graph_chart')
         elif 'btn_income' in request.POST:
             income_form = AddIncomeForm(request.POST)
             if income_form.is_valid():
@@ -181,8 +182,20 @@ def graph_chart(request):
                                                      'extend_form': extend_form,
                                                      'income_form': income_form, })
 
+
 def detail_sum(request):
     wallet = Wallet.objects.get(user=Profile.objects.get(user=request.user))
-    extends = Extend.objects.filter(wallet=wallet).order_by('-date')
+    extends = Extend.objects.filter(wallet=wallet)
     return render(request, 'core_logic/detail.html', {'extends': extends,
                                                       'wallet': wallet})
+
+
+def delete_extend(request, pk):
+    if request.method == "POST":
+        Extend.objects.filter(pk=pk).delete()
+        return redirect(reverse('detail_sum'))
+    else:
+        extend = Extend.objects.get(pk=pk)
+        return render(request, 'core_logic/delete.html', {'extend':extend,
+                                                          'wallet':Wallet.objects.get(user=Profile.objects.get(user=request.user))})
+

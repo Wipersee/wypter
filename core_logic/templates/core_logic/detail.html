@@ -19,7 +19,8 @@
             <th scope="row">{{forloop.counter}}</th>
             <td>{{extend.category}}</td>
             <td>{{extend.price}} {{wallet.courency}}</td>
-            <!--td>{{extend.comment}}</td-->
+          <td><a class="btn btn-danger" href="{% url 'delete_extend' pk=extend.pk %}"><span>Delete </span></a></td>
+
           </tr>
           {% endfor %}
         </tbody>
