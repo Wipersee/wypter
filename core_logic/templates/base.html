@@ -59,14 +59,17 @@
         <a class="nav-link" href="{% url 'pie_chart' %}">
           <i class="fas fa-chart-pie"></i>
           <span>Pie Chart</span></a>
-      </li>
 
       <li class="nav-item {%if active == 'graph'%} active{%endif%}">
         <a class="nav-link" href="{% url 'graph_chart' %}">
           <i class="fas fa-chart-line"></i>
           <span>Linear Chart</span></a>
       </li>
-
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'detail_sum' %}">
+          <i class="fas fa-chart-cost"></i>
+          <span>Costs Detail </span></a></li>
       <!-- Divider -->
       <hr class="sidebar-divider">
 

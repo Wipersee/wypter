@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from .forms import AddExtendForm, AddIncomeForm
 from .models import Wallet, Extend, Income, Category
@@ -180,3 +180,12 @@ def graph_chart(request):
                                                      'wallet': user_wallet,
                                                      'extend_form': extend_form,
                                                      'income_form': income_form, })
+
+def detail_sum(request):
+    wallet = Wallet.objects.get(user=Profile.objects.get(user=request.user))
+    extends = Extend.objects.filter(wallet=wallet).order_by('-date')
+    return render(request, 'core_logic/detail.html', {'extends': extends,
+                                                      'wallet': wallet})
+
+def delete_extension(request):
+    pass
