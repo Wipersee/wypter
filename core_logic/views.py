@@ -170,8 +170,7 @@ def graph_chart(request):
     else:
         extend_form = AddExtendForm()
         income_form = AddIncomeForm()
-        user_wallet = Wallet.objects.get(
-            user=Profile.objects.get(user=request.user))
+
         user_wallet = Wallet.objects.get(
             user=Profile.objects.get(user=request.user))
         extends = Extend.objects.filter(wallet=user_wallet, date__gte = (datetime.now() - timedelta(days=30)).strftime('%Y-%m-%d')).values(
@@ -192,6 +191,10 @@ def detail_sum(request):
 
 def delete_extend(request, pk):
     if request.method == "POST":
+        user_wallet = Wallet.objects.get(user=Profile.objects.get(user=request.user))
+        user_wallet.balance = Decimal(
+            user_wallet.balance) + Decimal(Extend.objects.get(pk=pk).price)
+        user_wallet.save()
         Extend.objects.filter(pk=pk).delete()
         return redirect(reverse('detail_sum'))
     else:
