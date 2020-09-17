@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
 {%load static %}
-{%block title%}Wypter main{%endblock%}
+{%block title%}Delete extend{%endblock%}
 {%block content%}
 <body>
 <form action="{% url 'delete_extend' pk=extend.pk %}" method="post">
 {% csrf_token %}
-    <h1>Remove this cost?</h1>
-    <button type="submit" class="btn btn-danger">Delete</button>
-    <a href="{% url 'detail_sum' %}">Cancel</a>
+    <h1 class="text-center">Remove this cost?</h1>
+    <div class="d-flex justify-content-center ">
+        <button type="submit" class="btn btn-danger mr-3">Delete</button>
+
+    <a class="btn btn-success" role="button" href="{% url 'detail_sum' %}">Cancel</a>
+    </div>
 </form>
 </body>
 {% endblock %}

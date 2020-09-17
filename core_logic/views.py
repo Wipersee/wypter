@@ -202,3 +202,36 @@ def delete_extend(request, pk):
         return render(request, 'core_logic/delete.html', {'extend':extend,
                                                           'wallet':Wallet.objects.get(user=Profile.objects.get(user=request.user))})
 
+
+def extend_update(request, pk):
+    if request.method == 'POST':
+        extend = Extend.objects.get(pk=pk)
+        ex = extend.price
+        bound_form = AddExtendForm(request.POST, instance=extend)
+        if bound_form.is_valid():
+            user_wallet = Wallet.objects.get(user=Profile.objects.get(user=request.user))
+            if bound_form.cleaned_data['price'] > ex:
+                if user_wallet.balance - bound_form.cleaned_data['price'] < 0:
+                    return render(request, 'core_logic/main_stat.html',
+                                  {'active': 'dashboard',
+                                             'extend_form': bound_form,
+                                             'income_form': AddIncomeForm(),
+                                             'wallet': user_wallet,
+                                             'sum_extends': Decimal(sum([x.price for x in Extend.objects.filter(wallet=user_wallet)])),
+                                             'error': True})
+                else:
+                    user_wallet.balance = Decimal(
+                        user_wallet.balance) - Decimal(bound_form.cleaned_data['price'] - ex)
+            else:
+                user_wallet.balance = Decimal(
+                    user_wallet.balance) + Decimal(ex - bound_form.cleaned_data['price'])
+            user_wallet.save()
+            bound_form.save()
+            return redirect(reverse('detail_sum'))
+
+        return render(request, 'core_logic/extend_update.html', {'form': bound_form, 'extend': extend})
+    else:
+        extend = Extend.objects.get(pk=pk)
+        bound_form = AddExtendForm(instance=extend)
+        return render(request, 'core_logic/extend_update.html', {'form': bound_form,
+                                                                 'extend': extend})

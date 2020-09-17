@@ -10,7 +10,8 @@
             <th scope="col">№</th>
             <th scope="col">Category</th>
             <th scope="col">Price $</th>
-            <!--th scope="col">Comment</th-->
+            <th scope="col">Remove costs</th>
+              <th scope="col">Update costs</th>
           </tr>
         </thead>
         <tbody>
@@ -20,6 +21,7 @@
             <td>{{extend.category}}</td>
             <td>{{extend.price}} {{wallet.courency}}</td>
           <td><a class="btn btn-danger" href="{% url 'delete_extend' pk=extend.pk %}"><span>Delete </span></a></td>
+          <td><a class="btn btn-info" href="{% url 'extend_update' pk=extend.pk %}"><span>Update</span></a></td>
 
           </tr>
           {% endfor %}
