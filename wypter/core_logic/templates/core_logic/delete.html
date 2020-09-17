@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{%load static %}
+{%block title%}Wypter main{%endblock%}
+{%block content%}
+<body>
+<form action="{% url 'delete_extend' pk=extend.pk %}" method="post">
+{% csrf_token %}
+    <h1>Are you sure you want to delete <b>{{ extend.category }} {{ extend.price }}{{ wallet.courency }}</b> extend?</h1>
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="{% url 'detail_sum' %}">Cancel</a>
+</form>
+</body>
+{% endblock %}

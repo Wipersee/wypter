@@ -10,8 +10,7 @@
             <th scope="col">№</th>
             <th scope="col">Category</th>
             <th scope="col">Price $</th>
-            <th scope="col">Remove costs</th>
-              <th scope="col">Update costs</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -20,9 +19,8 @@
             <th scope="row">{{forloop.counter}}</th>
             <td>{{extend.category}}</td>
             <td>{{extend.price}} {{wallet.courency}}</td>
-          <td><a class="btn btn-danger" href="{% url 'delete_extend' pk=extend.pk %}"><span>Delete </span></a></td>
-          <td><a class="btn btn-info" href="{% url 'extend_update' pk=extend.pk %}"><span>Update</span></a></td>
-
+          <td><a class="alert-link" href="{% url 'delete_extend' pk=extend.pk %}"><span>Delete </span></a>/
+          <a class="alert-link" href="{% url 'extend_update' pk=extend.pk %}"><span>Update</span></a></td>
           </tr>
           {% endfor %}
         </tbody>

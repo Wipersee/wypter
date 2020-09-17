@@ -3,7 +3,7 @@ from .forms import RegForm, SetUserForm, SetProfileForm, SetWalletForm
 from .models import Profile
 from core_logic.models import Wallet
 from django.contrib.auth.decorators import login_required
-
+from core_logic.view_decorator import request_check
 
 def registration(request):
     if request.method == 'POST':

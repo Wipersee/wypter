@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block title %}Settings{% endblock %}
+    {% block content %}    
+    <style>
+        input{
+        display: block;
+        width: 100%;
+        height: calc(1.5em + 0.75rem + 2px);
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #6e707e;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #d1d3e2;
+        border-radius: 0.35rem;
+        }
+        label{
+            padding-top: calc(0.375rem + 1px);
+    padding-bottom: calc(0.375rem + 1px);
+    margin-bottom: 0;
+    font-size: inherit;
+    line-height: 1.5;
+        }
+        form, h1{
+            width:80%;
+            margin:1rem auto;
+            display:block;
+        }
+        .btn-dark{
+            width:20%;
+            float:right;
+        }
+        .change_btn{
+            width:20%;
+            float:left;
+        }
+        .sticky-footer{
+            margin-top:5rem;
+        }
+        .img_wrapper{
+            width:100%;
+            height:auto;
+        }
+        img{
+            max-width:100%;
+            max-height:20rem;
+        }
+        select{
+              display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #6e707e;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #d1d3e2;
+    border-radius: 0.35rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+    </style>
+    <h1>Settings</h1>
+                <form method="post" enctype="multipart/form-data">
+                    {{ set_user_form.as_p }}
+                    
+                    <div class="img_wrapper">
+                        <h4>Change your photo:</h4>
+                        <img src="{% if user.profile.photo %}{{ user.profile.photo.url }}{% else%}{% static 'img/Wypter.png' %}{% endif %}" alt="Your avatar">
+                    </div>
+                    {{ set_prof_form.as_p }}
+                    {{ set_wallet_form.as_p }}
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-dark" value="Save">
+                    <a href="{% url 'password_change' %}" class="btn btn-link change_btn">Change password</a>
+                </form>
+                
+    {% endblock %}
