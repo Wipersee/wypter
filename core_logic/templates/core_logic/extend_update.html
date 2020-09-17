@@ -2,6 +2,70 @@
 {%load static %}
 {%block title%}Update{%endblock%}
 {%block content%}
+    <style>
+        input{
+        display: block;
+        width: 100%;
+        height: calc(1.5em + 0.75rem + 2px);
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #6e707e;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #d1d3e2;
+        border-radius: 0.35rem;
+        }
+        label{
+            padding-top: calc(0.375rem + 1px);
+    padding-bottom: calc(0.375rem + 1px);
+    margin-bottom: 0;
+    font-size: inherit;
+    line-height: 1.5;
+        }
+        form, h1{
+            width:80%;
+            margin:1rem auto;
+            display:block;
+        }
+        .btn-dark{
+            width:20%;
+            float:right;
+        }
+        .change_btn{
+            width:20%;
+            float:left;
+        }
+        .sticky-footer{
+            margin-top:5rem;
+        }
+        .img_wrapper{
+            width:100%;
+            height:auto;
+        }
+        img{
+            max-width:100%;
+            max-height:20rem;
+        }
+        select{
+              display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #6e707e;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #d1d3e2;
+    border-radius: 0.35rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+    </style>
+    <h1>Update your extend:</h1>
     <div class="d-flex justify-content-center">
 <form action="{% url 'extend_update' pk=extend.pk %}" method='POST'>
 <div class="w-100">
