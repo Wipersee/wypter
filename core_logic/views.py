@@ -1,12 +1,13 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import AddExtendForm, AddIncomeForm
-from .models import Wallet, Extend, Income, Category
+from .models import Wallet, Extend, Income
 from account.models import Profile
 from decimal import Decimal
 from django.db.models import Sum
 from datetime import datetime, timedelta
 from django.urls import reverse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 @login_required
@@ -181,14 +182,24 @@ def graph_chart(request):
                                                      'extend_form': extend_form,
                                                      'income_form': income_form, })
 
-
+@login_required
 def detail_sum(request):
     wallet = Wallet.objects.get(user=Profile.objects.get(user=request.user))
     extends = Extend.objects.filter(wallet=wallet)
-    return render(request, 'core_logic/detail.html', {'extends': extends,
-                                                      'wallet': wallet})
+    paginator = Paginator(extends, 6)
+    page_obj = request.GET.get('page')
+    try:
+        costs = paginator.page(page_obj)
+    except PageNotAnInteger:
+        costs = paginator.page(1)
+    except EmptyPage:
+        costs = paginator.page(paginator.num_pages)
+    return render(request, 'core_logic/detail.html', {'costs': costs,
+                                                      'wallet': wallet,
+                                                      'page_obj': page_obj})
 
 
+@login_required
 def delete_extend(request, pk):
     if request.method == "POST":
         user_wallet = Wallet.objects.get(user=Profile.objects.get(user=request.user))
@@ -202,7 +213,7 @@ def delete_extend(request, pk):
         return render(request, 'core_logic/delete.html', {'extend':extend,
                                                           'wallet':Wallet.objects.get(user=Profile.objects.get(user=request.user))})
 
-
+@login_required
 def extend_update(request, pk):
     if request.method == 'POST':
         extend = Extend.objects.get(pk=pk)

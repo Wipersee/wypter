@@ -15,7 +15,7 @@
           </tr>
         </thead>
         <tbody>
-          {% for extend in extends %}
+          {% for extend in costs %}
           <tr>
             <th scope="row">{{forloop.counter}}</th>
             <td>{{extend.category}}</td>
@@ -28,6 +28,6 @@
         </tbody>
       </table>
   </div>
-
+{% include "core_logic/pagination.html" with page=costs %}
 </body>
 {% endblock %}
