@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import AddExtendForm, AddIncomeForm
-from .models import Wallet, Extend, Income
+from .models import Wallet, Extend
 from account.models import Profile
 from decimal import Decimal
 from django.db.models import Sum
@@ -80,8 +80,8 @@ def detail_sum(request):
     extend_form = AddExtendForm()
     income_form = AddIncomeForm()
     wallet = Wallet.objects.get(user=Profile.objects.get(user=request.user))
-    extends = Extend.objects.filter(wallet=wallet)
-    paginator = Paginator(extends, 6)
+    extends = Extend.objects.filter(wallet=wallet)[::-1]
+    paginator = Paginator(extends, 8)
     page_obj = request.GET.get('page')
     try:
         costs = paginator.page(page_obj)

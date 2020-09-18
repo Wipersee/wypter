@@ -1,4 +1,4 @@
-<div class="pagination d-flex justify-content-center">
+<!--div class="pagination d-flex justify-content-center">
     <span class="step-links">
     {% if page.has_previous %}
         <a href="?page={{ page.previous_page_number }}">Previous</a>
@@ -10,4 +10,21 @@
         <a href="?page={{ page.next_page_number }}">Next</a>
     {% endif %}
     </span>
-</div>
+</div-->
+<nav aria-label="Page navigation example" class="pagination d-flex justify-content-center">
+  <ul class="pagination">
+    <li class="page-item">
+    {% if page.has_previous %}
+        <a href="?page={{ page.previous_page_number }}" class="page-link">Previous</a>
+    {% endif %}
+    </li>
+    {% load filters %}
+    {% for i in page.paginator.num_pages|times %}
+        <li class="page-item"><a class="page-link" href="?page={{forloop.counter}}">{{forloop.counter}}</a></li>
+    {% endfor %}
+    <li class="page-item"> 
+    {% if page.has_next %}
+        <a href="?page={{ page.next_page_number }}" class="page-link">Next</a>
+    {% endif %}</li>
+  </ul>
+</nav>
