@@ -64,8 +64,9 @@ def graph_chart(request):
 
     user_wallet = Wallet.objects.get(
         user=Profile.objects.get(user=request.user))
-    extends = Extend.objects.filter(wallet=user_wallet, date__gte=(datetime.now() - timedelta(days=30)).strftime('%Y-%m-%d')).values(
-        'date').annotate(price=Sum('price'))[::-1]
+    extends = Extend.objects.filter(wallet=user_wallet, 
+                                    date__gte=(datetime.now() - timedelta(days=30)).strftime('%Y-%m-%d')).values(
+                                    'date').annotate(price=Sum('price'))[::-1]
     return render(request, 'core_logic/graph.html', {'active': 'graph',
                                                      'extends': extends,
                                                      'wallet': user_wallet,
@@ -80,7 +81,7 @@ def detail_sum(request):
     extend_form = AddExtendForm()
     income_form = AddIncomeForm()
     wallet = Wallet.objects.get(user=Profile.objects.get(user=request.user))
-    extends = Extend.objects.filter(wallet=wallet)[::-1]
+    extends = Extend.objects.filter(wallet=wallet)
     paginator = Paginator(extends, 8)
     page_obj = request.GET.get('page')
     try:
@@ -129,7 +130,9 @@ def extend_update(request, pk):
                                              'extend_form': bound_form,
                                              'income_form': AddIncomeForm(),
                                              'wallet': user_wallet,
-                                             'sum_extends': Decimal(sum([x.price for x in Extend.objects.filter(wallet=user_wallet)])),
+                                             'sum_extends': Decimal(
+                                                                  sum([x.price for x in Extend.objects.filter(
+                                                                                        wallet=user_wallet)])),
                                              'error': True})
                 else:
                     user_wallet.balance = Decimal(

@@ -46,10 +46,24 @@
       height:3rem;
   }
   .errorlist li{
-    color:rgb(223, 30, 30);
+    /*color:rgb(223, 30, 30);*/
+      padding: 0.75rem 1.25rem;
+      margin-bottom: 1rem;
+      border: 1px solid transparent;
+      border-radius: 0.35rem;
+      color: #78261f;
+      background-color: #fadbd8;
+      border-color: #f8ccc8;
   }
   .errorlist{
     list-style:none;
+  }
+  .error_email{
+     /*color:rgb(223, 30, 30);*/
+     display: none;
+  }
+  .active_email{
+    display: block;
   }
 </style>
 </head>
@@ -69,6 +83,10 @@
                 <h1 class="h1 text-gray-900 mb-4">Wypter</h1>
                 <h2 class="h4 text-gray-900 mb-4">Join us</h2>
                
+              </div>
+              <div class="alert alert-danger error_email {% if error == True %}active_email{%endif%}">
+                This email is used <br>
+                You can <a href='{% url 'password_reset' %}' class="alert-link">recover</a> your password
               </div>
               <form class="user" method="post">
                 {{ user_form.as_p }}

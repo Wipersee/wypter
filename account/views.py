@@ -4,18 +4,26 @@ from .models import Profile
 from core_logic.models import Wallet
 from django.contrib.auth.decorators import login_required
 from core_logic.view_decorator import request_check
+from django.contrib.auth.models import User
 
 def registration(request):
     if request.method == 'POST':
         user_form = RegForm(request.POST)
         if user_form.is_valid():
-            new_user = user_form.save(commit=False)
-            new_user.set_password(
-                user_form.cleaned_data['password'])
-            new_user.save()
-            Profile.objects.create(user=new_user)
-            Wallet.objects.create(user=Profile.objects.get(user=new_user))
-            return redirect('login/')
+            try:
+                User.objects.get(email=user_form.cleaned_data['email'])
+                return render(request,
+                          'registration/main.html',
+                          {'user_form': user_form,
+                          'error':True })
+            except User.DoesNotExist:
+                new_user = user_form.save(commit=False)
+                new_user.set_password(
+                    user_form.cleaned_data['password'])
+                new_user.save()
+                Profile.objects.create(user=new_user)
+                Wallet.objects.create(user=Profile.objects.get(user=new_user))
+                return redirect('login/')
         else:
             return render(request,
                           'registration/main.html',

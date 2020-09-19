@@ -15,8 +15,9 @@ def request_check(func):
                 if extend_form.is_valid():
                     user_wallet = Wallet.objects.get(
                         user=Profile.objects.get(user=request.user))
-                    extends = Extend.objects.filter(wallet=user_wallet, date__gte=(datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')).values(
-        'date').annotate(price=Sum('price'))
+                    extends = Extend.objects.filter(wallet=user_wallet, 
+                                                    date__gte=(datetime.now()).strftime('%Y-%m-%d')).values(
+                                                    'date').annotate(price=Sum('price'))
                     print(extends)
                     if user_wallet.balance - extend_form.cleaned_data['price'] < 0:
                         return render(request, 'core_logic/main_stat.html',
@@ -24,7 +25,9 @@ def request_check(func):
                                                  'extend_form': extend_form,
                                                  'income_form': AddIncomeForm(),
                                                  'wallet': user_wallet,
-                                                 'sum_extends': Decimal(sum([x.price for x in Extend.objects.filter(wallet=user_wallet)])),
+                                                 'sum_extends': Decimal(
+                                                                sum([x.price for x in Extend.objects.filter(
+                                                                                        wallet=user_wallet)])),
                                                  'error': True})
                     elif extends and Profile.objects.get(user=request.user).money_limit<= extends[0]['price']  + extend_form.cleaned_data['price'] and Profile.objects.get(user=request.user).money_limit != 0:
                         user_wallet.balance=Decimal(
