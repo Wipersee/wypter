@@ -1,5 +1,5 @@
 # Wypter
-
+![Wypter Logo](https://ibb.co/8zMRxfV)
 >Wypter is the webapp for controlling your budget.
 
 Based on:
