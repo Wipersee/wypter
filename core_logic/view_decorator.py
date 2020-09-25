@@ -18,7 +18,6 @@ def request_check(func):
                     extends = Extend.objects.filter(wallet=user_wallet, 
                                                     date__gte=(datetime.now()).strftime('%Y-%m-%d')).values(
                                                     'date').annotate(price=Sum('price'))
-                    print(extends)
                     if user_wallet.balance - extend_form.cleaned_data['price'] < 0:
                         return render(request, 'core_logic/main_stat.html',
                                       {'active': 'dashboard',

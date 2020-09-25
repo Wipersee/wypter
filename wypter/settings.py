@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
-
+from celery.schedules import crontab
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -149,3 +149,18 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # JUST IN DEBUG MODE TO TYPE ENVELOPS TO CONSOLE
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+#SETTINGS FOR REDIS AS A BROCKER FOR CELERY
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Europe/Kiev'
+CELERY_BEAT_SCHEDULE = {
+    'monthly_extend_check': {
+        'task': 'core_logic.tasks.monthly_extend_check',
+        'schedule': crontab(),
+    },
+}

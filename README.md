@@ -8,6 +8,7 @@ Based on:
 3. Chart.js
 4. Azure/GCP
 5. Bootstrap
+6. Redis as a brocker and Celery for scheduled tasks
 
 ## Links:
 [Chek it out](https://github.com/Wipersee/wypter)

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import AddExtendForm, AddIncomeForm
-from .models import Wallet, Extend
+from .forms import AddExtendForm, AddIncomeForm, AddMonthlyExtendForm
+from .models import Wallet, Extend, MonthlyExtend
 from account.models import Profile
 from decimal import Decimal
 from django.db.models import Sum
@@ -94,7 +94,8 @@ def detail_sum(request):
                                                       'wallet': wallet,
                                                       'page_obj': page_obj,
                                                       'extend_form': extend_form,
-                                                      'income_form': income_form
+                                                      'income_form': income_form,
+                                                      'active':'detail_sum',
                                                       })
 
 @login_required
@@ -150,3 +151,25 @@ def extend_update(request, pk):
         bound_form = AddExtendForm(instance=extend)
         return render(request, 'core_logic/extend_update.html', {'form': bound_form,
                                                                  'extend': extend})
+
+
+@login_required
+def monthly_extend(request):
+    if request.method == 'POST':
+        monthly_extend_form = AddMonthlyExtendForm(instance=Wallet.objects.get(user=request.user.profile), data=request.POST)
+        if monthly_extend_form.is_valid():
+            m = MonthlyExtend.objects.create(
+                wallet = Wallet.objects.get(user=Profile.objects.get(user=request.user)),
+                category = monthly_extend_form.cleaned_data['category'],
+                date = monthly_extend_form.cleaned_data['date'],
+                price = monthly_extend_form.cleaned_data['price'],
+                description = monthly_extend_form.cleaned_data['description']
+            )
+            m.save()
+            return redirect('monthly_extends')
+    else:
+        monthly_extend_form = AddMonthlyExtendForm()
+        wallet = Wallet.objects.get(user=Profile.objects.get(user=request.user))
+        monthly_extends = MonthlyExtend.objects.filter(wallet=wallet)
+        return render(request, 'core_logic/monthly_extend.html',{'form':monthly_extend_form,
+                                                                'monthly_extends':monthly_extends})

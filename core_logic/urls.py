@@ -7,5 +7,6 @@ urlpatterns = [
     path('graph_chart/', views.graph_chart, name='graph_chart'),
     path('detail_sum/', views.detail_sum, name='detail_sum'),
     path('detail_sum/delete/<int:pk>/', views.delete_extend, name='delete_extend'),
-    path('detail_sum/update/<int:pk>/', views.extend_update, name='extend_update')
+    path('detail_sum/update/<int:pk>/', views.extend_update, name='extend_update'),
+    path('monthly_extend_add/', views.monthly_extend, name='monthly_extends'),
 ]
