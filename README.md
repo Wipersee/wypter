@@ -1,5 +1,6 @@
 # Wypter
-![Wypter Logo](https://i.ibb.co/hXsnd4v/Wypter.jpg)
+<img src="https://i.ibb.co/hXsnd4v/Wypter.jpg" alt="Wypter Logo" width="200">
+
 >Wypter is the webapp for controlling your budget.
 
 Based on:
