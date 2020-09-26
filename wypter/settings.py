@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'api.apps.ApiConfig',
     'core_logic.apps.CoreLogicConfig',
+    'telegram_bot.apps.TelegramBotConfig'
 ]
 
 REST_FRAMEWORK = {
@@ -162,6 +163,10 @@ CELERY_TIMEZONE = 'Europe/Kiev'
 CELERY_BEAT_SCHEDULE = {
     'monthly_extend_check': {
         'task': 'core_logic.tasks.monthly_extend_check',
-        'schedule': crontab(minute=0, hour=0),
+        'schedule': crontab(minute=42, hour=21),
     },
+    'bot_logic':{
+        'task': 'telegram_bot.tasks.bot_logic',
+        'schedule': timedelta(seconds=10),
+    }
 }

@@ -3,3 +3,4 @@ pillow
 djangorestframework
 redis
 celery
+requests

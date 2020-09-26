@@ -15,6 +15,7 @@ class Profile(models.Model):
   money_limit = models.DecimalField(max_digits=20,
                                     decimal_places=2,
                                     default=0.00)
+  telegram_nickname = models.CharField(max_length=255, blank=True)
 
   def __str__(self):
     return f'This account of {self.user.username}'

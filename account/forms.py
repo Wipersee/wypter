@@ -43,7 +43,7 @@ class SetProfileForm(forms.ModelForm):
     """
     class Meta:
         model = Profile
-        fields = ('photo', 'money_limit')
+        fields = ('photo', 'money_limit', 'telegram_nickname')
 
 
 class SetWalletForm(forms.ModelForm):
