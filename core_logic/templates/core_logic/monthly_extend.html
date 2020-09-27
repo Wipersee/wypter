@@ -72,8 +72,8 @@ transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
         <td>{{extend.date}}</td>
         <td>{{extend.price}}</td>
         <td>{{extend.description}}</td>
-      <td><a class="alert-link" href="{% url 'delete_extend' pk=extend.pk %}"><span>Delete </span></a>/
-      <a class="alert-link" href="{% url 'extend_update' pk=extend.pk %}"><span>Update</span></a></td>
+      <td><a class="alert-link" href="{% url 'delete_monthly_extend' pk=extend.pk %}"><span>Delete </span></a>/
+      <a class="alert-link" href="{% url 'update_monthly_extend' pk=extend.pk %}"><span>Update</span></a></td>
       </tr>
       {% endfor %}
     </tbody>

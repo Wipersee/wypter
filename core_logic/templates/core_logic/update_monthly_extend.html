@@ -65,9 +65,9 @@
         }
 
     </style>
-    <h1>Update your monthly extend:</h1>
+    <h1>Update your extend:</h1>
     <div class="d-flex justify-content-center">
-<form action="{% url 'extend_update' pk=extend.pk %}" method='POST'>
+<form action="{% url 'update_monthly_extend' pk=extend.pk %}" method='POST'>
 <div class="w-100">
     {% csrf_token %}
     {%  for field in form %}

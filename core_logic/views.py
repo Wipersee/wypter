@@ -98,6 +98,7 @@ def detail_sum(request):
                                                       'active':'detail_sum',
                                                       })
 
+
 @login_required
 def delete_extend(request, pk):
     if request.method == "POST":
@@ -173,3 +174,35 @@ def monthly_extend(request):
         monthly_extends = MonthlyExtend.objects.filter(wallet=wallet)
         return render(request, 'core_logic/monthly_extend.html',{'form':monthly_extend_form,
                                                                 'monthly_extends':monthly_extends})
+
+
+@login_required
+def delete_extend_monthly(request, pk):
+    if request.method == "POST":
+        user_wallet = Wallet.objects.get(
+            user=Profile.objects.get(user=request.user))
+        user_wallet.save()
+        MonthlyExtend.objects.filter(pk=pk).delete()
+        return redirect(reverse('monthly_extends'))
+    else:
+        ex_month = MonthlyExtend.objects.get(pk=pk)
+        return render(request, 'core_logic/delete_monthly_extend.html', {'extend': ex_month,
+                                                          'wallet': Wallet.objects.get(
+                                                              user=Profile.objects.get(user=request.user))})
+
+@login_required
+def monthly_extend_update(request, pk):
+    if request.method == 'POST':
+        ex_month = MonthlyExtend.objects.get(pk=pk)
+        bound_form = AddMonthlyExtendForm(request.POST, instance=ex_month)
+        if bound_form.is_valid():
+            bound_form.save()
+            return redirect(reverse('monthly_extends'))
+
+    else:
+        ex_month = MonthlyExtend.objects.get(pk=pk)
+        bound_form = AddMonthlyExtendForm(instance=ex_month)
+        return render(request, 'core_logic/update_monthly_extend.html', {'form': bound_form,
+                                                                         'extend': ex_month})
+    return render(request, 'core_logic/update_monthly_extend.html', {'form': bound_form, 'extend': ex_month})
+

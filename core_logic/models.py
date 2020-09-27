@@ -77,7 +77,7 @@ class MonthlyExtend(models.Model):
     wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE)
     category = models.ForeignKey(
         Category, related_name='monthly_extends', on_delete=models.CASCADE)
-    date = models.CharField(max_length=1, choices=[(x,x)for x in range(1,31)])
+    date = models.CharField(max_length=2, choices=((str(x), str(x))for x in range(1, 32)))
     price = models.DecimalField(max_digits=20, decimal_places=2, default=0.00)
     description = models.CharField(max_length=255)
 

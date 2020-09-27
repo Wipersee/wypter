@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{%load static %}
+{%block title%}Delete extend{%endblock%}
+{%block content%}
+<body>
+<form action="{% url 'delete_monthly_extend' pk=extend.pk %}" method="post">
+{% csrf_token %}
+    <h1 class="text-center">Remove this item?</h1>
+    <div class="d-flex justify-content-center ">
+        <button type="submit" class="btn btn-danger mr-3">Delete</button>
+
+    <a class="btn btn-success" role="button" href="{% url 'monthly_extends' %}">Cancel</a>
+    </div>
+</form>
+</body>
+{% endblock %}
