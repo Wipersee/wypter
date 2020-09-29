@@ -10,6 +10,8 @@ Based on:
 4. Azure/GCP
 5. Bootstrap
 6. Redis as a brocker and Celery for scheduled tasks
+7. Requests
+8. Telegram Bot API
 
 ## Links:
 [Chek it out](https://github.com/Wipersee/wypter)
