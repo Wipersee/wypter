@@ -167,6 +167,6 @@ CELERY_BEAT_SCHEDULE = {
     },
     'bot_logic':{
         'task': 'telegram_bot.tasks.bot_logic',
-        'schedule': timedelta(seconds=10),
+        'schedule': timedelta(seconds=3),
     }
 }

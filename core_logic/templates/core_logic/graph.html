@@ -29,11 +29,13 @@
           </tr>
         </thead>
         <tbody>
+          
           {% for extend in extends %}
           <tr>
             <th scope="row">{{forloop.counter}}</th>
             <td>{{extend.date}}</td>
-            <td>{{extend.price}} {{wallet.courency}}</td>
+            {% load filters %}
+            <td>{{extend.price|round}} {{wallet.courency}}</td>
           </tr>
           {% endfor %}
         </tbody>

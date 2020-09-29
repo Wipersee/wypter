@@ -1,6 +1,6 @@
 import requests
 import json
-
+import os
 
 class TelegramBot:
     def __init__(self, token):
@@ -33,3 +33,11 @@ class TelegramBot:
     def send_message(self , dictionary):
         url = self.url + "sendMessage?text={}&chat_id={}".format(dictionary["text"], dictionary["chat_id"])
         self.get_url(url)
+
+    def change_offset(self):
+        with open(f'{os.path.abspath(os.curdir)}/telegram_bot/offset.txt', 'r') as f:
+            offset = f.readline()
+        with open(f'{os.path.abspath(os.curdir)}/telegram_bot/offset.txt', 'w') as f:
+            f.write(str(int(offset)+1))
+        url = self.url + f"getUpdates?offset={offset}"
+        content = self.get_url(url)
