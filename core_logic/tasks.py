@@ -23,6 +23,6 @@ def wallet_write_off(extend):
 
 @task()
 def monthly_extend_check():
-    m_extends = MonthlyExtend.objects.filter(date=datetime.now().strftime('%d'))
+    m_extends = MonthlyExtend.objects.filter(date=int(datetime.now().strftime('%d')))
     for i in list(m_extends):
         wallet_write_off(i)

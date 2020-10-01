@@ -163,7 +163,7 @@ CELERY_TIMEZONE = 'Europe/Kiev'
 CELERY_BEAT_SCHEDULE = {
     'monthly_extend_check': {
         'task': 'core_logic.tasks.monthly_extend_check',
-        'schedule': crontab(minute=42, hour=21),
+        'schedule': crontab(hour = 0, minute = 1),
     },
     'bot_logic':{
         'task': 'telegram_bot.tasks.bot_logic',
